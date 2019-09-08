@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ReduxPelis.State
 {
+    
     public class AuthState
     {
         public AuthState(LoginStatus loginStatus, string userName, string token)
@@ -13,7 +14,7 @@ namespace ReduxPelis.State
             Token = token;
         }
 
-        public LoginStatus LoginStatus { get; }
+        public LoginStatus LoginStatus { get; } = LoginStatus.None;
         public string UserName { get; }
         public string Token { get; }
     }

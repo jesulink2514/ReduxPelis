@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace ReduxPelis.iOS
 {
@@ -22,6 +23,7 @@ namespace ReduxPelis.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

@@ -15,4 +15,10 @@ namespace ReduxPelis.Actions
     {
         public string Token;
     }
+
+    public struct LoadUser
+    {
+        public string Username;
+        public string Token;
+    }
 }

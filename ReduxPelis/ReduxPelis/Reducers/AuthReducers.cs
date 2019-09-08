@@ -20,6 +20,14 @@ namespace ReduxPelis.Reducers
                 .When<LoginFailed>((state, action) =>
                 {
                     return new AuthState(LoginStatus.LoggedOut, state.UserName, state.Token);
+                })
+                .When<LoadUser>((state, action) =>
+                {
+                    var status = string.IsNullOrEmpty(action.Token) ?
+                        LoginStatus.None : 
+                        LoginStatus.LoggedIn;
+
+                    return new AuthState(status, action.Username, action.Token);
                 });
 
             return reducer;

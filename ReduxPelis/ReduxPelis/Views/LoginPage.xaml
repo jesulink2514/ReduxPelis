@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ReduxPelis.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="20">
+        <BoxView
+            BackgroundColor="LightBlue"
+            HeightRequest="60"
+            HorizontalOptions="Center"
+            WidthRequest="60" />
+        <Label
+            FontSize="Large"
+            HorizontalOptions="CenterAndExpand"
+            Text="ReduxPelis" />
+        <Entry Placeholder="Enter your user" />
+        <Entry Placeholder="Enter your password" />
+        <Button Text="Login" />
+        <Label Text="I don't have an account yet." />
+    </StackLayout>
+
+</ContentPage>
