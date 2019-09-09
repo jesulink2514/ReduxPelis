@@ -7,6 +7,7 @@ using ReduxPelis.Actions;
 using ReduxPelis.Reducers;
 using ReduxPelis.Services;
 using ReduxPelis.State;
+using ReduxPelis.Store.Actions;
 
 namespace ReduxPelis.Tests
 {

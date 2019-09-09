@@ -7,6 +7,7 @@ using ReduxPelis.Reducers;
 using ReduxPelis.State;
 using ReduxPelis.Views;
 using ReduxPelis.Store;
+using ReduxPelis.Store.Actions;
 using Xamarin.Forms;
 
 namespace ReduxPelis

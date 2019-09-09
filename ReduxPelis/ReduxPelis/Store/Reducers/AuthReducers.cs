@@ -1,6 +1,6 @@
 ﻿using Reducto;
-using ReduxPelis.Actions;
 using ReduxPelis.State;
+using ReduxPelis.Store.Actions;
 
 namespace ReduxPelis.Reducers
 {

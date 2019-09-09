@@ -12,6 +12,7 @@ using System.Reactive.Threading.Tasks;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ReduxPelis.Store.Actions;
 using Xamarin.Forms;
 
 namespace ReduxPelis

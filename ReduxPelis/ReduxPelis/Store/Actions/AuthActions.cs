@@ -2,12 +2,13 @@
 using Reducto;
 using ReduxPelis.Services;
 using ReduxPelis.State;
+using ReduxPelis.Store.Actions;
 
 namespace ReduxPelis.Actions
 {
     public static class AuthActions
     {
-        public static Store<AuthState>.AsyncAction LoginAsync(
+        public static Store<AuthState>.AsyncAction<TokenResponse> LoginAsync(
             this ILoginService service,
             string user, string password)
         {
@@ -34,6 +35,8 @@ namespace ReduxPelis.Actions
                         };
                         dispatch(loginSucceed);
                     }
+
+                    return token;
                 }
                 catch (Exception ex)
                 {
@@ -42,6 +45,8 @@ namespace ReduxPelis.Actions
                         Error = ex.Message
                     };
                     dispatch(error);
+
+                    return new TokenResponse{IsTokenError = true, Error = "generic error"};
                 }
             };
         }

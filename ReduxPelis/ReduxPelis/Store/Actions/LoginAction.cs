@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace ReduxPelis.Actions
+﻿namespace ReduxPelis.Store.Actions
 {
     public struct StartLogin
     {
