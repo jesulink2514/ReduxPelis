@@ -1,12 +1,12 @@
-﻿using Autofac;
-using Reducto;
+﻿using System.Diagnostics;
+using Autofac;
+using Newtonsoft.Json;
 using ReduxPelis.Actions;
 using ReduxPelis.DependencyInjection;
 using ReduxPelis.Reducers;
 using ReduxPelis.State;
 using ReduxPelis.Views;
-using System;
-using System.Threading.Tasks;
+using ReduxPelis.Store;
 using Xamarin.Forms;
 
 namespace ReduxPelis
@@ -21,6 +21,15 @@ namespace ReduxPelis
             BuildContainer();
 
             Store = new RxStore<AuthState>(AuthReducers.All());
+            
+            #if DEBUG
+            Store.Middleware(store => next => action =>
+            {
+                Debug.WriteLine(JsonConvert.SerializeObject(action));
+                next(action);
+                Debug.WriteLine(JsonConvert.SerializeObject(store.GetState()));
+            });
+            #endif
         }
 
         private void BuildContainer()

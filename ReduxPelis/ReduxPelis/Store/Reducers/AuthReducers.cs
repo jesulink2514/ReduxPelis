@@ -9,9 +9,9 @@ namespace ReduxPelis.Reducers
         public static SimpleReducer<AuthState> All()
         {
             var reducer = new SimpleReducer<AuthState>()
-                .When<LoginStarted>((state, action) =>
+                .When<StartLogin>((state, action) =>
                 {
-                    return new AuthState(LoginStatus.LoggedIn, action.Username, string.Empty);
+                    return new AuthState(LoginStatus.LoginStarted, action.Username, string.Empty);
                 })
                 .When<LoginSucceeded>((state, action) =>
                 {
@@ -19,7 +19,7 @@ namespace ReduxPelis.Reducers
                 })
                 .When<LoginFailed>((state, action) =>
                 {
-                    return new AuthState(LoginStatus.LoggedOut, state.UserName, state.Token);
+                    return new AuthState(LoginStatus.LoginError, state.UserName, state.Token, action.Error);
                 })
                 .When<LoadUser>((state, action) =>
                 {

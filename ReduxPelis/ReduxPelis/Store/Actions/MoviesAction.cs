@@ -1,29 +1,15 @@
-﻿using ReduxPelis.Models;
+﻿using System;
+using Reducto;
 using ReduxPelis.Services;
-using System;
-using static Reducto.Store<ReduxPelis.State.MovieState>;
+using ReduxPelis.State;
 
 namespace ReduxPelis.Actions
 {
-    public struct LoadMoviesAction
-    {
-    }
-
-    public struct LoadMoviesErrorAction
-    {
-        public string Error { get; set; }
-    }
-
-    public struct LoadMoviesSuccessAction
-    {
-        public Movie[] Movies { get;set;}
-    }
-
     public static class MoviesAction
     {
-        public static AsyncAction GetLoadMoviesAsyncAction(this IMoviesService service)
+        public static Store<MovieState>.AsyncAction GetLoadMoviesAsyncAction(this IMoviesService service)
         {
-            return new AsyncAction(async (dispatch, getState) => {
+            return new Store<MovieState>.AsyncAction(async (dispatch, getState) => {
 
                 dispatch(new LoadMoviesAction{});
 

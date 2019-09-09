@@ -17,10 +17,19 @@
             FontSize="Large"
             HorizontalOptions="CenterAndExpand"
             Text="ReduxPelis" />
-        <Entry Placeholder="Enter your user" />
-        <Entry Placeholder="Enter your password" />
-        <Button Text="Login" />
+        <Entry Placeholder="Enter your user" Text="{Binding User.Value}" />
+        <Entry
+            IsPassword="True"
+            Placeholder="Enter your password"
+            Text="{Binding Password.Value}" />
+        <Label
+            FontSize="Medium"
+            IsVisible="{Binding HasError.Value}"
+            Text="{Binding ErrorMessage.Value}"
+            TextColor="DarkRed" />
+        <Button Command="{Binding LoginCommand}" Text="Login" />
         <Label Text="I don't have an account yet." />
+        <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading.Value}" />
     </StackLayout>
 
 </ContentPage>

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace ReduxPelis.Actions
 {
-    public struct LoginStarted
+    public struct StartLogin
     {
         public string Username;
     }
 
-    public struct LoginFailed { }
+    public struct LoginFailed
+    {
+        public string Error;
+    }
 
     public struct LoginSucceeded
     {

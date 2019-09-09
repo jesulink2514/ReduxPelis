@@ -41,7 +41,7 @@ namespace ReduxPelis
 
             SetUserCommand = new ReactiveCommand();
 
-            SetUserCommand.Subscribe(()=> App.Store.Dispatch(new LoginStarted{Username="jesus"}));
+            SetUserCommand.Subscribe(()=> App.Store.Dispatch(new StartLogin{Username="jesus"}));
 
             UserCaps.Subscribe(s=> {Debug.Write(s);});
 

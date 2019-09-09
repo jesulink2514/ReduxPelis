@@ -1,12 +1,10 @@
-﻿using Reducto;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Reactive.Subjects;
-using System.Text;
+using Reducto;
 
-namespace ReduxPelis
+namespace ReduxPelis.Store
 {
-    public class RxStore<TState> : Store<TState>, IDisposable
+    public class RxStore<TState> : Store<TState>, IRxStore<TState>
     {
         public RxStore(SimpleReducer<TState> rootReducer) : base(rootReducer)
         {
