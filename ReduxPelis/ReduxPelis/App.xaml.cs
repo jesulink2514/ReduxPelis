@@ -1,17 +1,22 @@
 ﻿using System.Diagnostics;
 using Autofac;
 using Newtonsoft.Json;
-using ReduxPelis.Actions;
+using Newtonsoft.Json.Linq;
+using Reducto;
 using ReduxPelis.DependencyInjection;
+using ReduxPelis.Navigation;
 using ReduxPelis.Reducers;
 using ReduxPelis.State;
 using ReduxPelis.Views;
 using ReduxPelis.Store;
 using ReduxPelis.Store.Actions;
+using ReduxPelis.Store.Reducers;
+using ReduxPelis.Store.State;
 using Xamarin.Forms;
 
 namespace ReduxPelis
 {
+
     public partial class App : Application
     {
         public IContainer Container { get;private set;}
@@ -21,14 +26,22 @@ namespace ReduxPelis
 
             BuildContainer();
 
-            Store = new RxStore<AuthState>(AuthReducers.All());
+            Store = new RxStore<AppState>(new CompositeReducer<AppState>()
+                .Part(s => s.Auth, AuthReducers.All())
+                .Part(s => s.Movies, MoviesReducers.All()).Get());
             
             #if DEBUG
             Store.Middleware(store => next => action =>
             {
-                Debug.WriteLine(JsonConvert.SerializeObject(action));
+                var payload = JToken.Parse(JsonConvert.SerializeObject(action))
+                    .ToString(Formatting.Indented);
+                Debug.WriteLine($"action:{action.GetType()}==>{payload}");
+                
                 next(action);
-                Debug.WriteLine(JsonConvert.SerializeObject(store.GetState()));
+                
+                var state = JToken.Parse(JsonConvert.SerializeObject(store.GetState()))
+                    .ToString(Formatting.Indented);
+                Debug.WriteLine($"state:::{state}");
             });
             #endif
         }
@@ -42,22 +55,25 @@ namespace ReduxPelis
             Container = builder.Build();
         }
 
-        public static RxStore<AuthState> Store { get; private set; }
+        public static RxStore<AppState> Store { get; private set; }
 
         protected override void OnStart()
         {
             LoadState();
 
-            var state = Store.GetState();
+            var navService = Container.Resolve<INavigationService>();
 
-            MainPage = state.LoginStatus == LoginStatus.LoggedIn ? 
-                new HomePage() as Page: 
-                new LoginPage();
+            var state = Store.GetState().Auth;
+
+            if (state.LoginStatus == LoginStatus.LoggedIn)
+                navService.GoToHome();
+            else
+                navService.GoToLogin();
         }
 
         private async void SaveState()
         {
-            var state = Store.GetState();
+            var state = Store.GetState().Auth;
             Properties["user"] = state.UserName;
             Properties["token"] = state.Token;
             await SavePropertiesAsync();
@@ -92,6 +108,12 @@ namespace ReduxPelis
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public static T Resolve<T>() where T:class
+        {
+            return ((App)Application.Current)
+                .Container.Resolve(typeof(T)) as T;
         }
     }
 }

@@ -1,15 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="ReduxPelis.Views.DetailsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+<ContentPage
+    x:Class="ReduxPelis.Views.DetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding CurrentMovie.Value.Title}"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="0" Spacing="0">
+
+        <Image
+            Aspect="AspectFill"
+            HeightRequest="200"
+            HorizontalOptions="FillAndExpand"
+            Source="{Binding CurrentMovie.Value.Poster}" />
+
+        <ScrollView>
+            <Label
+                Margin="20,10"
+                FontSize="Medium"
+                Text="{Binding CurrentState.Value}" />
+        </ScrollView>
+
+        <Picker
+            Title="Pick a function"
+            Margin="20,0"
+            ItemDisplayBinding="{Binding ., StringFormat='{0:HH:mm}'}"
+            ItemsSource="{Binding Functions.Value}"
+            SelectedItem="{Binding Function.Value}" />
+
+        <Button
+            Margin="20"
+            BackgroundColor="DodgerBlue"
+            CornerRadius="20"
+            Text="Buy ticket"
+            TextColor="White" />
+
+    </StackLayout>
+
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿using ReduxPelis.Models;
 
-namespace ReduxPelis.Actions
+namespace ReduxPelis.Store.Actions
 {
     public struct LoadMoviesAction
     {
@@ -14,5 +14,10 @@ namespace ReduxPelis.Actions
     public struct LoadMoviesSuccessAction
     {
         public Movie[] Movies { get;set;}
+    }
+
+    public struct SelectMovieAction
+    {
+        public Movie SelectedMovie { get; set; }
     }
 }

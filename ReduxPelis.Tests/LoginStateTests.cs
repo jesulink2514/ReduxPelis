@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Reducto;
-using ReduxPelis.Actions;
 using ReduxPelis.Reducers;
 using ReduxPelis.Services;
 using ReduxPelis.State;
 using ReduxPelis.Store.Actions;
+using ReduxPelis.Store.State;
 
 namespace ReduxPelis.Tests
 {
@@ -65,14 +65,22 @@ namespace ReduxPelis.Tests
                     Token = "token"
                 }));
 
-            var store = new Store<AuthState>(AuthReducers.All());
+            var store = CreateStoreWithAuthReducers();
+
             var asyncAction = loginService.LoginAsync("jesus", "123456");
             await store.Dispatch(asyncAction);
 
             //Check status
             var state = store.GetState();
 
-            Assert.AreEqual("token",state.Token);
+            Assert.AreEqual("token",state.Auth.Token);
+        }
+
+        private static Store<AppState> CreateStoreWithAuthReducers()
+        {
+            var store = new Store<AppState>(new CompositeReducer<AppState>()
+                .Part(s => s.Auth, AuthReducers.All()));
+            return store;
         }
     }
 }

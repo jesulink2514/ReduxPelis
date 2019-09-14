@@ -1,5 +1,4 @@
 ﻿using Reactive.Bindings;
-using ReduxPelis.Actions;
 using ReduxPelis.State;
 using System;
 using System.Collections.Generic;
@@ -31,6 +30,7 @@ namespace ReduxPelis
             InitializeComponent();            
 
             User = App.Store.AsObservable()
+                .Select(x=>x.Auth)
                 .Select(x=> x.UserName)
                 .DistinctUntilChanged()
                 .ToReactiveProperty(string.Empty);

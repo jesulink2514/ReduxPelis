@@ -6,26 +6,40 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="clr-namespace:ReduxPelis.Models"
+    x:Name="Page"
+    Title="Movies in Premiere"
     mc:Ignorable="d">
-    <CollectionView>
+    <CollectionView ItemsSource="{Binding Movies.Value}">
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="2" />
+            <GridItemsLayout
+                HorizontalItemSpacing="0"
+                Orientation="Vertical"
+                Span="2" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Image Source="{Binding Poster}" />
-                    <Label Text="{Binding Title}" />
-                </Grid>
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.GoToMovieCommand, Source={Reference Name=Page}}" CommandParameter="{Binding .}" />
+                    </StackLayout.GestureRecognizers>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        HorizontalOptions="FillAndExpand"
+                        Source="{Binding Poster}"
+                        VerticalOptions="FillAndExpand" />
+                    <Label
+                        Margin="5"
+                        FontSize="Medium"
+                        HeightRequest="50"
+                        MaxLines="2"
+                        Text="{Binding Title}"
+                        VerticalOptions="Center" />
+                </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-        <CollectionView.Header>
-            <StackLayout>
-                <Label
-                    Margin="10,15"
-                    FontSize="Large"
-                    Text="Movies" />
-            </StackLayout>
-        </CollectionView.Header>
     </CollectionView>
 </ContentPage>

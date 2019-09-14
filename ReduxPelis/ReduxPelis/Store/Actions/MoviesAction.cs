@@ -1,17 +1,22 @@
 ﻿using System;
 using Reducto;
 using ReduxPelis.Services;
-using ReduxPelis.State;
+using ReduxPelis.Store.State;
 
-namespace ReduxPelis.Actions
+namespace ReduxPelis.Store.Actions
 {
     public static class MoviesAction
     {
-        public static Store<MovieState>.AsyncAction GetLoadMoviesAsyncAction(this IMoviesService service)
+        public static Store<AppState>.AsyncAction GetLoadMoviesAsyncAction(
+            this IMoviesService service,bool force = false)
         {
-            return new Store<MovieState>.AsyncAction(async (dispatch, getState) => {
+            return async (dispatch, getState) => {
 
                 dispatch(new LoadMoviesAction{});
+
+                //Not reload when is already loaded
+                if (getState().Movies.Status == LoadStatus.Loaded && !force)
+                    return;
 
                 try
                 {
@@ -32,7 +37,7 @@ namespace ReduxPelis.Actions
                     };
                     dispatch(error);
                 }
-            });
+            };
         }
     }
 }

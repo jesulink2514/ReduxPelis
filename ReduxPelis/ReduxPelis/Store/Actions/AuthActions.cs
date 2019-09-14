@@ -1,14 +1,13 @@
 ﻿using System;
 using Reducto;
 using ReduxPelis.Services;
-using ReduxPelis.State;
-using ReduxPelis.Store.Actions;
+using ReduxPelis.Store.State;
 
-namespace ReduxPelis.Actions
+namespace ReduxPelis.Store.Actions
 {
     public static class AuthActions
     {
-        public static Store<AuthState>.AsyncAction<TokenResponse> LoginAsync(
+        public static Store<AppState>.AsyncAction<TokenResponse> LoginAsync(
             this ILoginService service,
             string user, string password)
         {

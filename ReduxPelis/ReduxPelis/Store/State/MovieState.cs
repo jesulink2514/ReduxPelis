@@ -1,22 +1,19 @@
 ﻿using ReduxPelis.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ReduxPelis.State
+namespace ReduxPelis.Store.State
 {
-    public class MovieState
+    public struct MovieState
     {
         public string Error { get; set; }
-        public Movie[] Movies { get;set;} = new Movie[0];
+        public Movie[] Movies { get;set;}
         public Movie CurrentMovie { get; set; }
-        public LoadStatus Status { get; set; } = LoadStatus.None;
+        public LoadStatus Status { get; set; }
     }
     public enum LoadStatus
     {
+        None = 0,
         Loading,
         Loaded,
-        Error,
-        None
+        Error
     }
 }

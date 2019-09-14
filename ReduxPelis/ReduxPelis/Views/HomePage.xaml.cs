@@ -1,4 +1,5 @@
 ﻿
+using ReduxPelis.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,10 +11,12 @@ namespace ReduxPelis.Views
         public HomePage()
         {
             InitializeComponent();
+            BindingContext = App.Resolve<PremierePageViewModel>();
         }
 
         protected override void OnAppearing()
         {
+            (BindingContext as PremierePageViewModel)?.OnAppearing();
         }
     }
 }

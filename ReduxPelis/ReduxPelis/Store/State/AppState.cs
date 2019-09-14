@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ReduxPelis.State;
 
-namespace ReduxPelis.State
+namespace ReduxPelis.Store.State
 {
-    public class AppState
+    public struct AppState
     {
-        public MovieState Movies { get; set; } = new MovieState();
-        public AuthState Auth { get; set; } = new AuthState(LoginStatus.None,"","");
+        public MovieState Movies;
+        public AuthState Auth;
     }
 }
