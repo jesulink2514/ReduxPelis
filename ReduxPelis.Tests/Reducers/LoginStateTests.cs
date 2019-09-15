@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +8,7 @@ using ReduxPelis.State;
 using ReduxPelis.Store.Actions;
 using ReduxPelis.Store.State;
 
-namespace ReduxPelis.Tests
+namespace ReduxPelis.Tests.Reducers
 {
     [TestClass]
     public class LoginStateTests

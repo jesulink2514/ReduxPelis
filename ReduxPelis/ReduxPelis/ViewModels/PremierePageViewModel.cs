@@ -58,12 +58,7 @@ namespace ReduxPelis.ViewModels
 
         public async Task OnAppearingAsync()
         {
-            await LoadMovies();
-        }
-
-        private async Task LoadMovies(bool force = false)
-        {
-            var loadAction = _service.GetLoadMoviesAsyncAction(force);
+            var loadAction = _service.GetLoadMoviesAsyncAction();
             using (UserDialogs.Instance.Loading())
             {
                 await _store.Dispatch(loadAction);

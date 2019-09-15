@@ -28,12 +28,6 @@ namespace ReduxPelis.ViewModels
             _moviesService = moviesService;
             _navigationService = navigationService;
 
-            CurrentState = _store.AsObservable()
-                .Select(x => x.Movies)
-                .Select(x => JsonConvert.SerializeObject(x))
-                .DefaultIfEmpty("{Empty state}")
-                .ToReadOnlyReactiveProperty();
-
             CurrentMovie = _store.AsObservable()
                 .Select(x => x.Movies.CurrentMovie)
                 .ToReadOnlyReactiveProperty(mode: ReactivePropertyMode.RaiseLatestValueOnSubscribe);
@@ -50,8 +44,6 @@ namespace ReduxPelis.ViewModels
 
             BuyTicketCommand.Subscribe(OnBuyTicket);
         }
-
-        public ReadOnlyReactiveProperty<string> CurrentState { get; set; }
 
         private async void OnBuyTicket()
         {
