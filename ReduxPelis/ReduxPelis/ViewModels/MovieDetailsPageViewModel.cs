@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Reactive.Linq;
+using Acr.UserDialogs;
 using Newtonsoft.Json;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using ReduxPelis.Models;
+using ReduxPelis.Navigation;
 using ReduxPelis.Services;
 using ReduxPelis.Store;
 using ReduxPelis.Store.State;
@@ -15,13 +17,16 @@ namespace ReduxPelis.ViewModels
     {
         private readonly IRxStore<AppState> _store;
         private readonly IMoviesService _moviesService;
+        private readonly INavigationService _navigationService;
 
         public MovieDetailsPageViewModel(
             IRxStore<AppState> store,
-            IMoviesService moviesService)
+            IMoviesService moviesService,
+            INavigationService navigationService)
         {
             _store = store;
             _moviesService = moviesService;
+            _navigationService = navigationService;
 
             CurrentState = _store.AsObservable()
                 .Select(x => x.Movies)
@@ -31,7 +36,7 @@ namespace ReduxPelis.ViewModels
 
             CurrentMovie = _store.AsObservable()
                 .Select(x => x.Movies.CurrentMovie)
-                .ToReadOnlyReactiveProperty(mode:ReactivePropertyMode.RaiseLatestValueOnSubscribe);
+                .ToReadOnlyReactiveProperty(mode: ReactivePropertyMode.RaiseLatestValueOnSubscribe);
 
             Functions = _store.AsObservable().Select(x => x.Movies)
                 .Where(x => x.CurrentMovie != null)
@@ -51,12 +56,16 @@ namespace ReduxPelis.ViewModels
         private async void OnBuyTicket()
         {
             var response = await Application.Current.MainPage
-                .DisplayAlert("Buy","Are you sure?",
-                    "Yes","No");
-            
-            if (response)
-            {
+                .DisplayAlert("Buy", "Are you sure?",
+                    "Yes", "No");
 
+            if (response && Function.Value.HasValue)
+            {
+                using (UserDialogs.Instance.Loading())
+                {
+                    await _moviesService.BuyTicketFor(CurrentMovie.Value.Id, Function.Value.Value);
+                }
+                await _navigationService.GoToTicketPage();
             }
         }
 

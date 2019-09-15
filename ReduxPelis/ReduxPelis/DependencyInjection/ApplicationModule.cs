@@ -23,6 +23,8 @@ namespace ReduxPelis.DependencyInjection
             builder.RegisterType<LoginPageViewModel>();
             builder.RegisterType<PremierePageViewModel>();
             builder.RegisterType<MovieDetailsPageViewModel>();
+            builder.RegisterType<MenuViewModel>();
+            builder.RegisterType<TicketsPageViewModel>();
 
             builder.Register(c => App.Store)
                 .As<IRxStore<AppState>>()

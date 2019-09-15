@@ -39,5 +39,38 @@ namespace ReduxPelis.Store.Actions
                 }
             };
         }
+
+        public static Store<AppState>.AsyncAction GetLoadTicketsAsyncAction(
+            this IMoviesService service)
+        {
+            return async (dispatch, getState) => {
+
+                dispatch(new LoadTicketsAction());
+
+                //Not reload when is already loaded
+                if (getState().Tickets.Status == LoadStatus.Loaded)
+                    return;
+
+                try
+                {
+                    var movies = await service.GetTickets();
+
+                    var success = new LoadTicketsSuccessAction()
+                    {
+                        Tickets = movies
+                    };
+
+                    dispatch(success);
+                }
+                catch (Exception ex)
+                {
+                    var error = new LoadTicketsErrorAction()
+                    {
+                        Error = ex.Message
+                    };
+                    dispatch(error);
+                }
+            };
+        }
     }
 }

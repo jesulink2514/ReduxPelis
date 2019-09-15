@@ -31,7 +31,7 @@ namespace ReduxPelis.Store.Reducers
                     Movies = action.Movies,
                     Status = LoadStatus.Loaded
                 })
-                .When<SelectMovieAction>((state,action)=> new MovieState
+                .When<SelectMovieAction>((state, action) => new MovieState
                 {
                     Error = state.Error,
                     Movies = state.Movies,

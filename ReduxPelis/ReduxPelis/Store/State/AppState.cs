@@ -6,5 +6,6 @@ namespace ReduxPelis.Store.State
     {
         public MovieState Movies;
         public AuthState Auth;
+        public TicketsState Tickets;
     }
 }

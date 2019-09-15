@@ -20,4 +20,18 @@ namespace ReduxPelis.Store.Actions
     {
         public Movie SelectedMovie { get; set; }
     }
+
+    public struct LoadTicketsAction
+    {
+    }
+
+    public struct LoadTicketsErrorAction
+    {
+        public string Error { get; set; }
+    }
+
+    public struct LoadTicketsSuccessAction
+    {
+        public Ticket[] Tickets { get; set; }
+    }
 }

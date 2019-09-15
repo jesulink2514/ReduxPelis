@@ -1,5 +1,6 @@
 ﻿using ReduxPelis.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,9 +57,39 @@ namespace ReduxPelis.Services
             return _movies;
         }
 
-        public Task<Ticket> BuyTicketFor(Guid movieId, DateTime function)
+        public async Task<Ticket> BuyTicketFor(Guid movieId, DateTime function)
         {
-            throw new NotImplementedException();
+            await Task.Delay(2500);
+            var ticketData = Guid.NewGuid().ToString().Replace("-", "");
+            var ticket = new Ticket
+            {
+                Id = Guid.NewGuid(),
+                Function = function,
+                Movie = _movies.First(i=>i.Id == movieId),
+                TicketData = ticketData
+            };
+            tickets.Add(ticket);
+            return ticket;
+        }
+        private readonly List<Ticket> tickets = new List<Ticket>
+        {
+            new Ticket
+            {
+                Id = Guid.NewGuid(),
+                Function = new DateTime(2019,9,26,17,0,0),
+                Movie = new Movie{
+                    Id = Guid.NewGuid(),
+                    Title = "It: Chapter Two",
+                    Poster="https://image.tmdb.org/t/p/w185_and_h278_bestv2/jCgt7buyQgnIJ8EnFBTBuNvehUO.jpg",
+                    Plot = "Defeated by members of the Losers' Club, the evil clown Pennywise returns 27 years later to terrorize the town of Derry, Maine, once again. Now adults, the childhood friends have long since gone their separate ways. But when people start disappearing, Mike Hanlon calls the others home for one final stand. Damaged by scars from the past, the united Losers must conquer their deepest fears to destroy the shape-shifting Pennywise -- now more powerful than ever."
+                },
+                TicketData = "1234567XXXXXX1234"
+            }
+        };
+        public async Task<Ticket[]> GetTickets()
+        {
+            await Task.Delay(2000);
+            return tickets.ToArray();
         }
 
         public async Task<Movie> GetMovie(Guid id)

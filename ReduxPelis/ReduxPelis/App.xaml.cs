@@ -28,7 +28,9 @@ namespace ReduxPelis
 
             Store = new RxStore<AppState>(new CompositeReducer<AppState>()
                 .Part(s => s.Auth, AuthReducers.All())
-                .Part(s => s.Movies, MoviesReducers.All()).Get());
+                .Part(s => s.Movies, MoviesReducers.All())
+                .Part(s => s.Tickets,TicketsReducers.All())
+                .Get());
             
             #if DEBUG
             Store.Middleware(store => next => action =>

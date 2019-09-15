@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Reactive.Bindings;
 using ReduxPelis.Models;
 using ReduxPelis.Navigation;
@@ -57,8 +58,16 @@ namespace ReduxPelis.ViewModels
 
         public async Task OnAppearingAsync()
         {
-            var loadAction = _service.GetLoadMoviesAsyncAction();
-            await _store.Dispatch(loadAction);
+            await LoadMovies();
+        }
+
+        private async Task LoadMovies(bool force = false)
+        {
+            var loadAction = _service.GetLoadMoviesAsyncAction(force);
+            using (UserDialogs.Instance.Loading())
+            {
+                await _store.Dispatch(loadAction);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

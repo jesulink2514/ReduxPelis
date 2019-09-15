@@ -10,5 +10,6 @@ namespace ReduxPelis.Services
         Task<Movie[]> GetAvailableMovies();
 
         Task<Ticket> BuyTicketFor(Guid movieId, DateTime function);
+        Task<Ticket[]> GetTickets();
     }
 }

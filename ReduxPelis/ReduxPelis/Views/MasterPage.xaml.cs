@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ReduxPelis.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ConfirmPage : ContentPage
+    public partial class MasterPage : MasterDetailPage
     {
-        public ConfirmPage()
+        public MasterPage()
         {
             InitializeComponent();
         }
