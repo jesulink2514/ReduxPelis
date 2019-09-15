@@ -18,7 +18,8 @@ namespace ReduxPelis.Navigation
     {
         public Task GoToHome()
         {
-            Application.Current.MainPage = new NavPage(new HomePage());
+            Application.Current.MainPage = new ConfirmPage();
+            //Application.Current.MainPage = new NavPage(new HomePage());
             return Task.CompletedTask;
         }
 

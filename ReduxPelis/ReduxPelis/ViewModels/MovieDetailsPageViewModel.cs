@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive;
 using System.Reactive.Linq;
-using System.Text;
 using Newtonsoft.Json;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using ReduxPelis.Models;
-using ReduxPelis.Navigation;
 using ReduxPelis.Services;
 using ReduxPelis.Store;
-using ReduxPelis.Store.Actions;
 using ReduxPelis.Store.State;
+using Xamarin.Forms;
 
 namespace ReduxPelis.ViewModels
 {
@@ -43,8 +38,9 @@ namespace ReduxPelis.ViewModels
                 .Select(x => x.CurrentMovie.Functions)
                 .ToReadOnlyReactiveProperty();
 
-            BuyTicketCommand = Function.SetValidateNotifyError(f => f == null ? "You should pick a function" : null)
-                .ObserveHasErrors
+            BuyTicketCommand = new[] {Function.SetValidateNotifyError(f => f == null ? "You should pick a function" : null)
+                .ObserveHasErrors}
+                .CombineLatestValuesAreAllFalse()
                 .ToReactiveCommand();
 
             BuyTicketCommand.Subscribe(OnBuyTicket);
@@ -52,9 +48,16 @@ namespace ReduxPelis.ViewModels
 
         public ReadOnlyReactiveProperty<string> CurrentState { get; set; }
 
-        private void OnBuyTicket()
+        private async void OnBuyTicket()
         {
+            var response = await Application.Current.MainPage
+                .DisplayAlert("Buy","Are you sure?",
+                    "Yes","No");
             
+            if (response)
+            {
+
+            }
         }
 
         public ReactiveCommand BuyTicketCommand { get; private set; }

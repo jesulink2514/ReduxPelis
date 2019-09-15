@@ -56,6 +56,11 @@ namespace ReduxPelis.Services
             return _movies;
         }
 
+        public Task<Ticket> BuyTicketFor(Guid movieId, DateTime function)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Movie> GetMovie(Guid id)
         {
             await Task.Delay(500);

@@ -20,7 +20,7 @@
             <Label
                 Margin="20,10"
                 FontSize="Medium"
-                Text="{Binding CurrentState.Value}" />
+                Text="{Binding CurrentMovie.Value.Plot}" />
         </ScrollView>
 
         <Picker
@@ -33,6 +33,7 @@
         <Button
             Margin="20"
             BackgroundColor="DodgerBlue"
+            Command="{Binding BuyTicketCommand}"
             CornerRadius="20"
             Text="Buy ticket"
             TextColor="White" />
