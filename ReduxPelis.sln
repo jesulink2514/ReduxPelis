@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Application", "1.Applicat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Tests", "2. Tests", "{D7AEC053-F2C7-45C4-A4A6-FC6E3AFB3EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReduxPelis.Tests", "ReduxPelis.Tests\ReduxPelis.Tests.csproj", "{88347C46-4F5D-4880-AE6D-D663A57C8A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReduxPelis.Tests", "ReduxPelis.Tests\ReduxPelis.Tests.csproj", "{88347C46-4F5D-4880-AE6D-D663A57C8A28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReduxPelis.UITest", "ReduxPelis.UITest\ReduxPelis.UITest.csproj", "{958FEFED-C25A-4118-8042-3199AB38CA7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,18 @@ Global
 		{88347C46-4F5D-4880-AE6D-D663A57C8A28}.Release|iPhone.Build.0 = Release|Any CPU
 		{88347C46-4F5D-4880-AE6D-D663A57C8A28}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{88347C46-4F5D-4880-AE6D-D663A57C8A28}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|iPhone.Build.0 = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{958FEFED-C25A-4118-8042-3199AB38CA7F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +114,7 @@ Global
 		{D3EE5CC8-D5CE-4798-9568-722527694740} = {2D1A3969-D9F4-4343-8BB6-9BD37D48DD88}
 		{041D1AD3-3620-4207-A935-8435CA7539D0} = {2D1A3969-D9F4-4343-8BB6-9BD37D48DD88}
 		{88347C46-4F5D-4880-AE6D-D663A57C8A28} = {D7AEC053-F2C7-45C4-A4A6-FC6E3AFB3EC2}
+		{958FEFED-C25A-4118-8042-3199AB38CA7F} = {D7AEC053-F2C7-45C4-A4A6-FC6E3AFB3EC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1E6CB21-1A2C-4FC8-AF55-D831C13D1AE5}
