@@ -20,4 +20,9 @@
         public string Username;
         public string Token;
     }
+
+    public struct StartLogout
+    {
+
+    }
 }

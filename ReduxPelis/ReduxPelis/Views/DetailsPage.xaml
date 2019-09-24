@@ -26,12 +26,14 @@
         <Picker
             Title="Pick a function"
             Margin="20,0"
+            AutomationId="FunctionsPicker"
             ItemDisplayBinding="{Binding ., StringFormat='{0:HH:mm}'}"
             ItemsSource="{Binding Functions.Value}"
             SelectedItem="{Binding Function.Value}" />
 
         <Button
             Margin="20"
+            AutomationId="BuyBtn"
             BackgroundColor="DodgerBlue"
             Command="{Binding BuyTicketCommand}"
             CornerRadius="20"

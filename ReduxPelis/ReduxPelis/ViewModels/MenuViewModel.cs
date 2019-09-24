@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using Reactive.Bindings;
 using ReduxPelis.Navigation;
+using ReduxPelis.Store;
+using ReduxPelis.Store.Actions;
+using ReduxPelis.Store.State;
 
 namespace ReduxPelis.ViewModels
 {
@@ -18,10 +21,14 @@ namespace ReduxPelis.ViewModels
     public class MenuViewModel: INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
+        private readonly IRxStore<AppState> _store;
 
-        public MenuViewModel(INavigationService navigationService)
+        public MenuViewModel(
+            INavigationService navigationService,
+            IRxStore<AppState> store)
         {
             _navigationService = navigationService;
+            _store = store;
             Menus = new[]
             {
                 new MenuItem{Description = "Premiere",Option = MenuOptions.Premiere}, 
@@ -38,9 +45,10 @@ namespace ReduxPelis.ViewModels
         public ReactiveCommand LogoutCommand { get; private set; }
         public MenuItem[] Menus { get; private set; }
 
-        private void Logout()
+        private async void Logout()
         {
-
+            _store.Dispatch(new StartLogout { });
+            await _navigationService.GoToLogin();
         }
         private async void OnGoTo(MenuItem menu)
         {
