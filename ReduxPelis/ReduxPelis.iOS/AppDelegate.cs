@@ -26,7 +26,7 @@ namespace ReduxPelis.iOS
 #if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
 #endif
-
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

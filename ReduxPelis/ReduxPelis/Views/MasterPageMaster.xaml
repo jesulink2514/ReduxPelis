@@ -42,6 +42,7 @@
                     <ViewCell>
                         <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
                             <Label
+                                ClassId="MenuItem"
                                 FontSize="24"
                                 Text="{Binding Description}"
                                 VerticalOptions="FillAndExpand"
@@ -53,6 +54,7 @@
         </ListView>
         <Button
             Padding="10"
+            AutomationId="LogoutBtn"
             BackgroundColor="Transparent"
             Command="{Binding LogoutCommand}"
             Text="Logout"

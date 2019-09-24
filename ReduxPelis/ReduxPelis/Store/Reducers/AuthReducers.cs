@@ -1,4 +1,5 @@
-﻿using Reducto;
+﻿using System;
+using Reducto;
 using ReduxPelis.State;
 using ReduxPelis.Store.Actions;
 using ReduxPelis.Store.State;
@@ -29,7 +30,8 @@ namespace ReduxPelis.Reducers
                         LoginStatus.LoggedIn;
 
                     return new AuthState(status, action.Username, action.Token);
-                });
+                })
+                .When<StartLogout>((state, action) => new AuthState(LoginStatus.None,String.Empty,String.Empty));
 
             return reducer;
         }
