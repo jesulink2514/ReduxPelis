@@ -1,5 +1,4 @@
-﻿using ReduxPelis.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ReduxPelis.Views
@@ -10,7 +9,7 @@ namespace ReduxPelis.Views
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = App.Resolve<LoginPageViewModel>();
+            //BindingContext = App.Resolve<LoginPageViewModel>();
         }
     }
 }

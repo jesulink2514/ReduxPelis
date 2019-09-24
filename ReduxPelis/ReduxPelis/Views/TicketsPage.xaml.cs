@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReduxPelis.Navigation;
-using ReduxPelis.ViewModels;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace ReduxPelis.Views
 {
@@ -16,15 +8,15 @@ namespace ReduxPelis.Views
         public TicketsPage()
         {
             InitializeComponent();
-            BindingContext = App.Resolve<TicketsPageViewModel>();
+            //BindingContext = App.Resolve<TicketsPageViewModel>();
         }
 
         protected override void OnAppearing()
         {
-            if (BindingContext is INavigatedAware vm)
-            {
-                vm.OnAppearing();
-            }
+            //if (BindingContext is INavigatedAware vm)
+            //{
+            //    vm.OnAppearing();
+            //}
         }
     }
 }

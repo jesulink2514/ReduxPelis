@@ -6,10 +6,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using ReduxPelis.ViewModels;
+//using ReduxPelis.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MenuItem = ReduxPelis.ViewModels.MenuItem;
+//using MenuItem = ReduxPelis.ViewModels.MenuItem;
 
 namespace ReduxPelis.Views
 {
@@ -19,17 +19,17 @@ namespace ReduxPelis.Views
         public MasterPageMaster()
         {
             InitializeComponent();
-            BindingContext = App.Resolve<MenuViewModel>();
+            //BindingContext = App.Resolve<MenuViewModel>();
         }
 
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            this.Menu.SelectedItem = null;
-            if (BindingContext is MenuViewModel vm)
-            {
-                var menu = e.Item as MenuItem;
-                vm.GoToCommand.Execute(menu);
-            }
+            //this.Menu.SelectedItem = null;
+            //if (BindingContext is MenuViewModel vm)
+            //{
+            //    var menu = e.Item as MenuItem;
+            //    vm.GoToCommand.Execute(menu);
+            //}
         }
     }
 }

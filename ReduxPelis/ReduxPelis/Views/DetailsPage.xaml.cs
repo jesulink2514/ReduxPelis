@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReduxPelis.Models;
-using ReduxPelis.Navigation;
-using ReduxPelis.ViewModels;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace ReduxPelis.Views
 {
@@ -17,7 +8,7 @@ namespace ReduxPelis.Views
         public DetailsPage()
         {
             InitializeComponent();
-            BindingContext = App.Resolve<MovieDetailsPageViewModel>();
+            //BindingContext = App.Resolve<MovieDetailsPageViewModel>();
         }
     }
 }
