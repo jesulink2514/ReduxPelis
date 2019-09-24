@@ -19,8 +19,4 @@
     <ProjectReference Include="..\ReduxPelis\ReduxPelis\ReduxPelis.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
